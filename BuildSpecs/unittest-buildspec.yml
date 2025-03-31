@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Install started on `date`
       - yum -y install python36
-      - pip3 install -r FlaskApp/requirements.txt
+      - pip install -r FlaskApp/requirements.txt
   build:
     commands:
       - echo Build started on `date`
