@@ -18,7 +18,11 @@ phases:
       - echo Build started on `date`
       - cd FlaskApp
       - python3 -m pylint *.py
-      - nosetests --cover-html --with-coverage --cover-erase --cover-package=.
+      # - nosetests --cover-html --with-coverage --cover-erase --cover-package=.
+      - echo "Running unit tests with unittest..."
+      - python3 -m unittest discover -s . -p "test_*.py" -v
+      - coverage run -m unittest discover -s . -p "test_*.py" # To generate coverage data
+      - coverage html -d coverage_report
   post_build:
     commands:
       - echo Build completed on `date`
