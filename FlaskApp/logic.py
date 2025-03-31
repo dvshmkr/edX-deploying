@@ -75,8 +75,8 @@ def get_challenge():
         "medium" :[],
         "hard" :[]
     }
-
-    for difficulty in challenges:
+    
+    for difficulty, challenge_list in challenges.items():
         for segments in [1, 2, 3]:
             answers = answers_dict[segments][difficulty]
             correct_csv = random.choice(list(answers.keys()))
@@ -92,8 +92,27 @@ def get_challenge():
 
             challenge = [correct_answer, wrong_answer]
             random.shuffle(challenge)
-            challenges[difficulty].append(challenge)
+            challenge_list.append(challenge)  # Assuming challenges[difficulty] is a list
     return challenges
+
+    # for difficulty in challenges:
+    #     for segments in [1, 2, 3]:
+    #         answers = answers_dict[segments][difficulty]
+    #         correct_csv = random.choice(list(answers.keys()))
+    #         correct_answer = {}
+    #         correct_answer['route_csv'] = correct_csv
+    #         correct_answer['airports'] = route_csv_to_airports(correct_csv)
+    #         correct_answer['image'] = route_csv_to_image(correct_csv)
+    #         wrong_csv = random.choice(answers[correct_csv])
+    #         wrong_answer = {}
+    #         wrong_answer['route_csv'] = wrong_csv
+    #         wrong_answer['airports'] = route_csv_to_airports(wrong_csv)
+    #         wrong_answer['image'] = route_csv_to_image(wrong_csv)
+
+    #         challenge = [correct_answer, wrong_answer]
+    #         random.shuffle(challenge)
+    #         challenges[difficulty].append(challenge)
+    # return challenges
 
 def route_csv_to_airports(route_csv):
     "Find airports by route csv"
