@@ -1,17 +1,20 @@
+''' Unit testing file '''
+
 import unittest
 import json
 from application import application
 
 class TestFlaskApp(unittest.TestCase):
+    """ Test Class """
 
     def setUp(self):
         """Set up test client and context."""
         self.app = application.test_client()
         self.app.testing = True
 
-    def tearDown(self):
-        """Clean up after tests (if needed)."""
-        pass
+    # def tearDown(self):
+    #     """Clean up after tests (if needed)."""
+    #     pass
 
     def test_index_route(self):
         """Test the index route returns a 200 status code."""
