@@ -2,10 +2,10 @@ version: 0.2
 
 env:
   variables:
-    DATABASE_HOST: "not-used"
-    DATABASE_USER: "not-used"
-    DATABASE_PASSWORD: "not-used"
-    DATABASE_DB_NAME: "not-used"
+    DATABASE_HOST: "localhost"
+    DATABASE_USER: "web_user"
+    DATABASE_PASSWORD: "1keytone"
+    DATABASE_DB_NAME: "routes"
 
 phases:
   install:
