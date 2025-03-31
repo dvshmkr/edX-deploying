@@ -123,6 +123,6 @@ def route_csv_to_image(route_csv):
     "Create image url for route csv"
     # image = ("https://us-west-2-tcdev.s3.amazonaws.com/"
     #          "courses/AWS-100-ADD/v1.0.0/data/maps/%s.png") % route_csv.replace(",", "_")
-    image = f"https://us-west-2-tcdev.s3.amazonaws.com/"
-        "courses/AWS-100-ADD/v1.0.0/data/maps/{route_csv.replace(',', '_')}.png"
+    image = (f"https://us-west-2-tcdev.s3.amazonaws.com/"
+             f"courses/AWS-100-ADD/v1.0.0/data/maps/{route_csv.replace(',', '_')}.png")
     return image
