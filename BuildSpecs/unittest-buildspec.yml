@@ -29,6 +29,6 @@ phases:
 
 artifacts:
   files:
-    - 'FlaskApp/cover/*'
+    - 'cover/**/*'
   base-directory: .
     
