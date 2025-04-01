@@ -29,6 +29,7 @@ phases:
 
 artifacts:
   files:
+    - cd ..
     - echo $CODEBUILD_SRC_DIR
     - echo Current Directory is `pwd`
     - 'FlaskApp/cover/*'
