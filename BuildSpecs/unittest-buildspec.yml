@@ -16,8 +16,8 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Current Directory is `pwd`
       - cd FlaskApp
+      - echo Current Directory is `pwd`
       - python3 -m pylint *.py
       - echo "Running unit tests with unittest..."
       - python3 -m unittest discover -s . -p "test_*.py" -v
@@ -29,5 +29,7 @@ phases:
 
 artifacts:
   files:
+    - echo $CODEBUILD_SRC_DIR
+    - echo Current Directory is `pwd`
     - 'FlaskApp/cover/*'
     
