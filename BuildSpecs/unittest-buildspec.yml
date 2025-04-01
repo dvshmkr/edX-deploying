@@ -16,9 +16,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
+      - echo Current Directory is `pwd`
       - cd FlaskApp
       - python3 -m pylint *.py
-      # - nosetests --cover-html --with-coverage --cover-erase --cover-package=.
       - echo "Running unit tests with unittest..."
       - python3 -m unittest discover -s . -p "test_*.py" -v
       - coverage run -m unittest discover -s . -p "test_*.py" # To generate coverage data
@@ -29,6 +29,5 @@ phases:
 
 artifacts:
   files:
-    - 'cover/**/*'
-  base-directory: .
+    - 'FlaskApp/cover/*'
     
