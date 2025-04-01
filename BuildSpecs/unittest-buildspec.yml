@@ -29,4 +29,5 @@ phases:
 
 artifacts:
   files:
+    - echo Current directory is `pwd`
     - 'FlaskApp/cover/*'
