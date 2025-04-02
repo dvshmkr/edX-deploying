@@ -30,5 +30,5 @@ phases:
 
 artifacts:
   files:
-    - 'FlaskApp/cover/*'
+    - 'coverage_report/*'
     
