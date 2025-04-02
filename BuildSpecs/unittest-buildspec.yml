@@ -23,6 +23,11 @@ phases:
       - python3 -m unittest discover -s . -p "test_*.py" -v
       - coverage run -m unittest discover -s . -p "test_*.py" # To generate coverage data
       - coverage html -d coverage_report
+      
+      - echo "Listing contents of the root directory AFTER coverage:"
+      - ls -al
+      - echo "Listing contents of coverage_report directory (if it exists):"
+      - ls -al coverage_report
   post_build:
     commands:
       - echo Build completed on `date`
