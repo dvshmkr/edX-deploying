@@ -28,11 +28,13 @@ phases:
       - ls -al
       - echo "Listing contents of coverage_report directory (if it exists):"
       - ls -al coverage_report
+      - cd ..
+      - echo Current Directory is `pwd`
   post_build:
     commands:
       - echo Build completed on `date`
 
 artifacts:
   files:
-    - coverage_report/index.html
+    - 'FlaskApp/coverage_report/*'
     
