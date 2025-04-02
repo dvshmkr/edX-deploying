@@ -30,6 +30,5 @@ phases:
 
 artifacts:
   files:
-    - coverage_report/**/*
-  base-directory: .
+    - coverage_report/index.html
     
