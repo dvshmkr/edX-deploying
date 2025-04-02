@@ -30,6 +30,6 @@ phases:
 
 artifacts:
   files:
-    - 'coverage_report/**/*'
+    - coverage_report/**/*
   base-directory: .
     
