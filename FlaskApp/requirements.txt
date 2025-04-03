@@ -1,4 +1,6 @@
 Flask
+nose
 coverage
-mysql-connector-python == 9.2.0
+mysql_connector_python
 pylint
+boto3

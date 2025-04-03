@@ -9,6 +9,7 @@ phases:
     commands:
       - DATABASE_ROOT_PASSWORD=$(aws ssm get-parameter --name ${ENV_PREFIX}DATABASE-MASTER-PASSWORD --with-decryption --query 'Parameter.Value' --output text)
       - sed -i s/SED_REPLACE_PASS/$DATABASE_ROOT_PASSWORD/g Templates/edx-provision-configuration.json
+      - sed -i s/TEST-/$ENV_PREFIX/g CodeDeploy/configure_software.sh
 
   post_build:
     commands:
