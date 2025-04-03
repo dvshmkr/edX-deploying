@@ -302,6 +302,7 @@ Resources:
       IamInstanceProfile: !Ref RootInstanceProfile
       ImageId: !FindInMap [ AWSRegion2AMI, !Ref "AWS::Region", AMI ]
       InstanceType: t3.micro
+      KeyName: exercise3_key
       NetworkInterfaces:
         - DeviceIndex: '0'
           AssociatePublicIpAddress: 'true'
@@ -314,7 +315,7 @@ Resources:
         - Key: CodeDeployInstance
           Value: "TESTWebServer"
         - Key: Owner
-          Value: "DVSHMKR2"
+          Value: "dvshmkr"
       UserData:
         Fn::Base64:
           !Sub |
