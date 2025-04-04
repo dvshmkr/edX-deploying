@@ -320,6 +320,10 @@ Resources:
         Fn::Base64:
           !Sub |
             #!/bin/bash -xe
+            echo "User data script started" >> /tmp/userdata_test.log
+            yum update -y aws-cfn-bootstrap
+            aws configure set default.region ${AWS::Region}
+            /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
     CreationPolicy:
       ResourceSignal:
