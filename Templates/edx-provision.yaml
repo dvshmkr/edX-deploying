@@ -25,7 +25,7 @@ Parameters:
 Mappings:
   AWSRegion2AMI:
     us-west-2:
-      AMI: ami-d874e0a0
+      AMI: ami-087f352c165340ea1
 
 
 Resources:
