@@ -327,36 +327,36 @@ Resources:
     CreationPolicy:
       ResourceSignal:
         Timeout: 'PT5M'
-    Metadata:
-      AWS::CloudFormation::Init: 
-        config: 
-          packages: 
-            yum: 
-              nginx: []
-              ruby: []
-              wget: []
-              python3: []
-              python3-devel: []
-              gcc: []
-              mariadb-client: []
-          commands: 
-            01_get_cd: 
-              command: "wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install"
-              cwd: "/tmp"
-            02_install_cd: 
-              command: "chmod +x install && ./install auto"
-              cwd: "/tmp"
-            03_install_uwsgi: 
-              command: "pip3 install uwsgi"
-          services: 
-            systemd: 
-              nginx: 
-                enabled: "true"
-                ensureRunning: "true"
-                files: 
-                  - "/etc/nginx/nginx.conf"
-                sources: 
-                  - "/var/www/html"
+    # Metadata:
+    #   AWS::CloudFormation::Init: 
+    #     config: 
+    #       packages: 
+    #         yum: 
+    #           nginx: []
+    #           ruby: []
+    #           wget: []
+    #           python3: []
+    #           python3-devel: []
+    #           gcc: []
+    #           mariadb-client: []
+    #       commands: 
+    #         01_get_cd: 
+    #           command: "wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install"
+    #           cwd: "/tmp"
+    #         02_install_cd: 
+    #           command: "chmod +x install && ./install auto"
+    #           cwd: "/tmp"
+    #         03_install_uwsgi: 
+    #           command: "pip3 install uwsgi"
+    #       services: 
+    #         systemd: 
+    #           nginx: 
+    #             enabled: "true"
+    #             ensureRunning: "true"
+    #             files: 
+    #               - "/etc/nginx/nginx.conf"
+    #             sources: 
+    #               - "/var/www/html"
 
 
 Outputs:
