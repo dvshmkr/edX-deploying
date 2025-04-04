@@ -349,7 +349,7 @@ Resources:
             03_install_uwsgi: 
               command: "pip3 install uwsgi"
           services: 
-            sysvinit: 
+            systemd: 
               nginx: 
                 enabled: "true"
                 ensureRunning: "true"
