@@ -327,11 +327,11 @@ Resources:
     Metadata:
       AWS::CloudFormation::Init: 
         config: 
-          #packages: 
-            #yum: 
+          packages: 
+            yum: 
               #nginx: []
-              #ruby: []
-              #wget: []
+              ruby: []
+              wget: []
               #python3: []
               #python3-devel: []
               #gcc: []
