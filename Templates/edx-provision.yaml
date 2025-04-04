@@ -323,6 +323,7 @@ Resources:
             echo "User data script started" >> /tmp/userdata_test.log
             yum update -y aws-cfn-bootstrap
             aws configure set default.region ${AWS::Region}
+            yum install ruby3.2 wget
             /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
     CreationPolicy:
@@ -334,8 +335,8 @@ Resources:
           packages: 
             yum: 
               #nginx: []
-              ruby: []
-              wget: []
+              #ruby: []
+              #wget: []
               #python3: []
               #python3-devel: []
               #gcc: []
