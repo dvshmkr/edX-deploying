@@ -332,8 +332,8 @@ Resources:
     Metadata:
       AWS::CloudFormation::Init: 
         config: 
-          packages: 
-            yum: 
+          #packages: 
+            #yum: 
               #nginx: []
               #ruby: []
               #wget: []
