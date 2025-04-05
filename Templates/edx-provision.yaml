@@ -321,7 +321,7 @@ Resources:
         Fn::Base64:
           !Sub |
             #!/bin/bash -xe
-            echo "User data script started" >> /tmp/userdata_test.log
+            echo "User data script started" >> /var/log/userdata_test.log
             yum update -y aws-cfn-bootstrap
             aws configure set default.region ${AWS::Region}
             /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
@@ -335,8 +335,8 @@ Resources:
           packages: 
             yum: 
               nginx: []
-              #ruby3.2: []
-              #wget: []
+              ruby3.2: []
+              wget: []
               python3: []
               python3-devel: []
               gcc: []
