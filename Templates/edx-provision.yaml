@@ -329,7 +329,7 @@ Resources:
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
     CreationPolicy:
       ResourceSignal:
-        Timeout: 'PT8M'
+        Timeout: 'PT5M'
     Metadata:
       AWS::CloudFormation::Init:
         config:
@@ -351,15 +351,15 @@ Resources:
               cwd: "/tmp"
             #03_install_uwsgi:
               #command: "pip3 install uwsgi"
-          services:
-            systemd:
-              nginx:
-                enabled: "true"
-                ensureRunning: "true"
-                files:
-                  - "/etc/nginx/nginx.conf"
-                sources:
-                  - "/var/www/html"
+          #services:
+            #systemd:
+              #nginx:
+                #enabled: "true"
+                #ensureRunning: "true"
+                #files:
+                  #- "/etc/nginx/nginx.conf"
+                #sources:
+                  #- "/var/www/html"
 
 Outputs:
 
@@ -367,9 +367,9 @@ Outputs:
     Description: The hostname for the RDS instance
     Value: !GetAtt LabDBInstance.Endpoint.Address
 
-  #TESTWebServerInstanceId:
-  #  Description: The TESTWebServer InstanceId Id
-  #  Value: !Ref WebServerInstance
+  TESTWebServerInstanceId:
+    Description: The TESTWebServer InstanceId Id
+    Value: !Ref WebServerInstance
 
 
 
