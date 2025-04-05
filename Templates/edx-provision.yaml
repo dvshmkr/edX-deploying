@@ -349,8 +349,8 @@ Resources:
             02_install_cd:
               command: "chmod +x install && ./install auto"
               cwd: "/tmp"
-            03_install_uwsgi:
-              command: "pip3 install uwsgi"
+            #03_install_uwsgi:
+              #command: "pip3 install uwsgi"
           services:
             systemd:
               nginx:
