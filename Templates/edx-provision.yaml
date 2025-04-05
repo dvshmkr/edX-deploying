@@ -328,7 +328,7 @@ Resources:
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
     CreationPolicy:
       ResourceSignal:
-        Timeout: 'PT5M'
+        Timeout: 'PT8M'
     Metadata:
       AWS::CloudFormation::Init: 
         config: 
