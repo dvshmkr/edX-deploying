@@ -306,9 +306,9 @@ Outputs:
     Description: The hostname for the RDS instance
     Value: !GetAtt LabDBInstance.Endpoint.Address
 
-  TESTWebServerInstanceId:
-    Description: The TESTWebServer InstanceId Id
-    Value: !Ref WebServerInstance
+  #TESTWebServerInstanceId:
+  #  Description: The TESTWebServer InstanceId Id
+  #  Value: !Ref WebServerInstance
 
 
 
