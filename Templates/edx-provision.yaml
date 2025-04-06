@@ -339,9 +339,9 @@ Resources:
               python3: []
               python3-pip: []
               python3-devel: []
+              python3-wheel: []
               gcc: []
               mariadb105: []
-              python3-wheel: []
           commands:
             01_get_cd:
               command: "wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install"
