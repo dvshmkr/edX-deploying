@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install python requirements
-#pip-3.6 install -r /webapps/app/FlaskApp/requirements.txt
+# pip-3.6 install -r /webapps/app/FlaskApp/requirements.txt
 pip3 install -r /webapps/app/FlaskApp/requirements.txt
 
 # get/set vars
