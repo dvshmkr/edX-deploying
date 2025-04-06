@@ -5,7 +5,7 @@ files:
     destination: /webapps/app
   - source: CodeDeploy/uwsgi.service
     destination: /etc/systemd/system/
-    file_exist_behavior: OVERWRITE
+    file_exists_behavior: OVERWRITE
 hooks:
   AfterInstall:
     - location: CodeDeploy/configure_software.sh
