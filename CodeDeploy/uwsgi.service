@@ -7,7 +7,7 @@ After=network.target
 User=nginx
 Group=nginx
 WorkingDirectory=/webapps/app/FlaskApp
-ExecStart=/usr/local/bin/uwsgi --ini /webapps/app/FlaskApp/Deploy/app.ini
+ExecStart=/usr/local/bin/uwsgi --ini /webapps/app/FlaskApp/app.ini
 
 [Install]
 WantedBy=multi-user.target

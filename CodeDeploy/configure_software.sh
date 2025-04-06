@@ -1,10 +1,12 @@
 #!/bin/bash
 
-
+echo "check 0: $0" >> /webapps/$0.log
 
 # install python requirements
 # pip-3.6 install -r /webapps/app/FlaskApp/requirements.txt
 pip3 install -r /webapps/app/FlaskApp/requirements.txt
+
+echo "check 1: $0" >> /webapps/$0.log
 
 # get/set vars
 export DATABASE_ROOT_USER=root
@@ -14,19 +16,27 @@ export DATABASE_HOST=$(aws cloudformation describe-stacks --query 'Stacks[?conta
 export DATABASE_DB_NAME=TEST-routes
 export DATABASE_USER=web_user
 
+echo "check 2: $0" >> /webapps/$0.log
+
 # setup sql database
 cat /webapps/app/CodeDeploy/TEST-CreateDrop.sql | mysql -h $DATABASE_HOST -u $DATABASE_ROOT_USER -p$DATABASE_ROOT_PASSWORD
 sed "s/SED_REPLACE_PASS/$DATABASE_PASSWORD/g" < /webapps/app/CodeDeploy/create_schema.sql | mysql -h $DATABASE_HOST -u $DATABASE_ROOT_USER -p$DATABASE_ROOT_PASSWORD $DATABASE_DB_NAME
 /webapps/app/CodeDeploy/database_populate.py
 
+echo "check 3: $0" >> /webapps/$0.log
+
 # copy in the nginx config
 mv -f /webapps/app/CodeDeploy/nginx.conf /etc/nginx/nginx.conf
 service nginx restart
+
+echo "check 4: $0" >> /webapps/$0.log
 
 # push configuration into app.ini
 sed -i s/SED_REPLACE_DATABASE_HOST/$DATABASE_HOST/g /webapps/app/CodeDeploy/app.ini
 sed -i s/SED_REPLACE_DATABASE_DB_NAME/$DATABASE_DB_NAME/g /webapps/app/CodeDeploy/app.ini
 echo "env = ENV_PREFIX=TEST-" >> /webapps/app/CodeDeploy/app.ini
+
+echo "check 5: $0" >> /webapps/$0.log
 
 # configure region for the app
 #EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
@@ -35,9 +45,15 @@ EC2_AVAIL_ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.16
 EC2_REGION="`echo \"$EC2_AVAIL_ZONE\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
 echo "env = AWS_DEFAULT_REGION=$EC2_REGION" >> /webapps/app/CodeDeploy/app.ini
 
+echo "check 6: $0" >> /webapps/$0.log
+
 # display the deployment group in the footer
 echo $DEPLOYMENT_GROUP_NAME > /webapps/app/FlaskApp/templates/buildinfo.html
 
+echo "check 7: $0" >> /webapps/$0.log
+
 # configure upstart to run uwsgi
-mv -f /webapps/app/CodeDeploy/uwsgi.conf /etc/init/uwsgi.conf
+#mv -f /webapps/app/CodeDeploy/uwsgi.conf /etc/init/uwsgi.conf
 mv -f /webapps/app/CodeDeploy/app.ini /webapps/app/FlaskApp/
+
+echo "check 8: $0" >> /webapps/$0.log

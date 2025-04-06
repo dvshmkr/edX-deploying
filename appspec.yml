@@ -9,7 +9,7 @@ files:
 hooks:
   AfterInstall:
     - location: CodeDeploy/configure_software.sh
-      timeout: 500
+      timeout: 300
       runas: root
     - location: CodeDeploy/start_server.sh
       timeout: 300
