@@ -335,14 +335,14 @@ Resources:
         config:
           packages:
             yum:
-              #nginx: []
+              nginx: []
               ruby3.2: []
               wget: []
               python3: []
               python3-pip: []
-              #python3-devel: []
-              #gcc: []
-              #mysql: []
+              python3-devel: []
+              gcc: []
+              mariadb105: []
           commands:
             01_get_cd:
               command: "wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install"
@@ -350,17 +350,17 @@ Resources:
             02_install_cd:
               command: "chmod +x install && ./install auto"
               cwd: "/tmp"
-            #03_install_uwsgi:
-              #command: "pip3 install uwsgi"
-          #services:
-            #systemd:
-              #nginx:
-                #enabled: "true"
-                #ensureRunning: "true"
-                #files:
-                  #- "/etc/nginx/nginx.conf"
-                #sources:
-                  #- "/var/www/html"
+            03_install_uwsgi:
+              command: "pip3 install uwsgi"
+          services:
+            systemd:
+              nginx:
+                enabled: "true"
+                ensureRunning: "true"
+                files:
+                  - "/etc/nginx/nginx.conf"
+                sources:
+                  - "/var/www/html"
 
 Outputs:
 

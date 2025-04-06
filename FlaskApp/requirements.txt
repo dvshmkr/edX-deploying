@@ -1,5 +1,5 @@
 Flask
-nose
+#nose
 coverage
 mysql_connector_python
 pylint
