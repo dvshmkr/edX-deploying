@@ -29,6 +29,11 @@ echo "check 3: " >> /webapps/test.log
 mv -f /webapps/app/CodeDeploy/nginx.conf /etc/nginx/nginx.conf
 systemctl restart nginx
 
+# configure log file for uwsgi
+mkdir /var/log/uwsgi
+chown nginx:root /var/log/uwsgi
+systemctl restart uwsgi
+
 echo "check 4: " >> /webapps/test.log
 
 # push configuration into app.ini
