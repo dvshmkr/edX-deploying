@@ -1,9 +1,10 @@
 #!/bin/bash
 
-service nginx stop
+# service nginx stop
 
-status uwsgi | grep start
-if [ "$?" == "0" ]
-then
-    stop uwsgi
-fi
+# status uwsgi | grep start
+# if [ "$?" == "0" ]
+# then
+#     stop uwsgi
+# fi
+sudo sysetmctl stop uwsgi

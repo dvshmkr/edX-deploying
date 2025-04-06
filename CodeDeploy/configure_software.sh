@@ -49,10 +49,6 @@ chown -R nginx:root /webapps/app/CodeDeploy
 mv -f /webapps/app/CodeDeploy/nginx.conf /etc/nginx/nginx.conf
 systemctl restart nginx
 
-# configure log file for uwsgi
-mkdir /var/log/uwsgi
-chown nginx:nginx /var/log/uwsgi
-systemctl restart uwsgi
 
 echo "check 4: " >> /webapps/test.log
 
@@ -64,5 +60,14 @@ echo "check 5: " >> /webapps/test.log
 # configure upstart to run uwsgi
 #mv -f /webapps/app/CodeDeploy/uwsgi.conf /etc/init/uwsgi.conf
 #mv -f /webapps/app/CodeDeploy/app.ini /webapps/app/FlaskApp/
+# configure log file for uwsgi
+mkdir /var/log/uwsgi
+chown nginx:nginx /var/log/uwsgi
+
+systemctl stop uwsgi.service
+sleep 3
+systemctl start uwsgi.service
+systemctl enable uwsgi.service
+
 
 echo "check 6: " >> /webapps/test.log
