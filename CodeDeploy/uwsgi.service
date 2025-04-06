@@ -1,0 +1,13 @@
+# file: /etc/init/uwsgi.conf
+[Unit]
+Description=uWSGI server
+After=network.target
+
+[Service]
+User=nginx
+Group=nginx
+WorkingDirectory=/webapps/app/FlaskApp
+ExecStart=/usr/local/bin/uwsgi --ini /webapps/app/FlaskApp/Deploy/app.ini
+
+[Install]
+WantedBy=multi-user.target
