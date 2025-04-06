@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 # install python requirements
 # pip-3.6 install -r /webapps/app/FlaskApp/requirements.txt
 pip3 install -r /webapps/app/FlaskApp/requirements.txt
@@ -27,7 +29,9 @@ sed -i s/SED_REPLACE_DATABASE_DB_NAME/$DATABASE_DB_NAME/g /webapps/app/CodeDeplo
 echo "env = ENV_PREFIX=TEST-" >> /webapps/app/CodeDeploy/app.ini
 
 # configure region for the app
-EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
+#EC2_AVAIL_ZONE=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone`
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 60")
+EC2_AVAIL_ZONE=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
 EC2_REGION="`echo \"$EC2_AVAIL_ZONE\" | sed -e 's:\([0-9][0-9]*\)[a-z]*\$:\\1:'`"
 echo "env = AWS_DEFAULT_REGION=$EC2_REGION" >> /webapps/app/CodeDeploy/app.ini
 

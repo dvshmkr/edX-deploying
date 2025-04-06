@@ -3,6 +3,8 @@ os: linux
 files:
   - source: /
     destination: /webapps/app
+  - source: CodeDeploy/uwsgi.service
+    destination: /etc/systemd/system/
 hooks:
   AfterInstall:
     - location: CodeDeploy/configure_software.sh
