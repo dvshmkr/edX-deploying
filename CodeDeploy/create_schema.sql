@@ -23,7 +23,7 @@ total_miles INT
 );
 
 CREATE USER 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
-GRANT SELECT ON airport TO 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
-GRANT SELECT ON route_miles TO 'web_user'@'%';
+GRANT SELECT ON `TEST-routes`.airport TO 'web_user'@'%';
+GRANT SELECT ON `TEST-routes`.route_miles TO 'web_user'@'%';
 
 SELECT "WORKED!" as INFO
