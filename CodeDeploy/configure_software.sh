@@ -12,13 +12,14 @@ pip3 install -r /webapps/app/FlaskApp/requirements.txt
 export DATABASE_ROOT_USER=root
 export DATABASE_ROOT_PASSWORD=$(aws ssm get-parameter --name TEST-DATABASE-MASTER-PASSWORD --with-decryption --query 'Parameter.Value' --output text)
 export DATABASE_PASSWORD=$(aws ssm get-parameter --name TEST-DATABASE-WEB-USER-PASSWORD --with-decryption --query 'Parameter.Value' --output text)
-echo "Environment.DATABASE_PASSWORD = $DATABASE_PASSWORD" >> /webapps/test.log
+
 export DATABASE_HOST=$(aws cloudformation describe-stacks --query 'Stacks[?contains(StackId,`TEST-Stack`)]|[0].Outputs[?contains(OutputKey,`RDSAddress`)]|[].OutputValue' --output text)
 export DATABASE_DB_NAME=TEST-routes
 export DATABASE_USER=web_user
 
 echo "check 2: " >> /webapps/test.log
 echo "DATABASE_ROOT_PASSWORD: $DATABASE_ROOT_PASSWORD" >> /webapps/test.log
+echo "DATABASE_PASSWORD: $DATABASE_PASSWORD" >> /webapps/test.log
 echo "DATABASE_HOST: $DATABASE_HOST" >> /webapps/test.log
 
 # setup sql database
