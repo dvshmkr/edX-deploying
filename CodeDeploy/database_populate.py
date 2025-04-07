@@ -15,6 +15,8 @@ import sys
 import csv
 import os
 
+print("database_populate is running")
+
 def populate():
     user = os.environ['DATABASE_ROOT_USER']
     password = os.environ['DATABASE_ROOT_PASSWORD']

@@ -22,6 +22,7 @@ direct_miles INT,
 total_miles INT
 );
 
+CREATE USER 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
 GRANT SELECT ON airport TO 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
 GRANT SELECT ON route_miles TO 'web_user'@'%';
 
