@@ -20,6 +20,8 @@ print(f'*** Database host is: {DATABASE_HOST}')
 DATABASE_DB_NAME = os.environ['DATABASE_DB_NAME']
 print(f'*** DB Name is: {DATABASE_DB_NAME}')
 DATABASE_USER = os.environ['DATABASE_USER']
+x = os.environ.get('DATABASE_PASSWORD')
+print(f'*** DB Password is: {x}')
 print(f'*** DB User is: {DATABASE_USER}')
 if 'DATABASE_PASSWORD' in os.environ:
     DATABASE_PASSWORD = os.environ['DATABASE_PASSWORD']
