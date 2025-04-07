@@ -8,10 +8,10 @@
 # or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
 # specific language governing permissions and limitations under the License.
-print("*********** Demo-routes Flask application ************")
+"Demo-routes Flask application"
 from flask import Flask, jsonify, render_template, request
-
 import logic
+print("*********** Demo-routes Flask application ************")
 
 application = Flask(__name__)
 
