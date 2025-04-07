@@ -43,6 +43,7 @@ echo "check 3: " >> /webapps/test.log
 
 chown -R nginx:root /webapps/app/FlaskApp
 chown -R nginx:root /webapps/app/CodeDeploy
+chown nginx:root /webapps
 
 
 # copy in the nginx config
@@ -63,6 +64,12 @@ echo "check 5: " >> /webapps/test.log
 # configure log file for uwsgi
 mkdir /var/log/uwsgi
 chown nginx:nginx /var/log/uwsgi
+
+systemctl status uwsgi.service
+if [ "$?" == "0" ]
+then
+    echo "uwsgi is running!" >> /webapps.test.log
+fi
 
 systemctl stop uwsgi.service
 sleep 3
