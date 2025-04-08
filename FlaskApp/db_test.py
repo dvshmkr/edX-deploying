@@ -7,7 +7,7 @@ def get_database_connection():
         host='test-stack-labdbinstance-iwn8wkt1epiz.cvasewix0fhp.us-west-2.rds.amazonaws.com',
         database='TEST-routes')
     return conn
-    
+
 mydb = get_database_connection()
 
 mycursor = mydb.cursor()
@@ -17,3 +17,4 @@ myresult = mycursor.fetchall()
 print("MySQL Users:")
 for user in myresult:
     print(user[0])
+    
