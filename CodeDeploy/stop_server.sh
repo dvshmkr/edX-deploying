@@ -7,4 +7,4 @@
 # then
 #     stop uwsgi
 # fi
-sudo sysetmctl stop uwsgi
+systemctl stop uwsgi
