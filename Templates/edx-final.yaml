@@ -302,6 +302,7 @@ Resources:
       IamInstanceProfile: !Ref RootInstanceProfile
       ImageId: !FindInMap [ AWSRegion2AMI, !Ref "AWS::Region", AMI ]
       InstanceType: t2.micro
+      KeyName: exercise3_key
       NetworkInterfaces:
         - DeviceIndex: '0'
           AssociatePublicIpAddress: 'true'
@@ -313,29 +314,33 @@ Resources:
           Value: "FINAL-WebServerInstance"
         - Key: CodeDeployInstance
           Value: "FINALWebServer"
+        - Key: Owner
+          Value: "dvshmkr-final"
       UserData:
         Fn::Base64:
           !Sub |
             #!/bin/bash -xe
+            echo "User data script started" >> /var/log/userdata_test.log
             yum update -y aws-cfn-bootstrap
             aws configure set default.region ${AWS::Region}
             /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
             /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
-    CreationPolicy:
-      ResourceSignal:
-        Timeout: 'PT5M'
+
     Metadata:
       AWS::CloudFormation::Init: 
         config: 
           packages: 
             yum: 
               nginx: []
-              ruby: []
+              ruby3.2: []
               wget: []
-              python36: []
-              python36-devel: []
+              python3: []
+              python3-pip: []
+              python3-devel: []
+              python3-wheel: []
               gcc: []
-              mysql: []
+              htop: []
+              mariadb105: []
           commands: 
             01_get_cd: 
               command: "wget https://aws-codedeploy-us-west-2.s3.amazonaws.com/latest/install"
@@ -344,9 +349,9 @@ Resources:
               command: "chmod +x install && ./install auto"
               cwd: "/tmp"
             03_install_uwsgi: 
-              command: "pip-3.6 install uwsgi"
+              command: "pip-3 install uwsgi"
           services: 
-            sysvinit: 
+            systemd: 
               nginx: 
                 enabled: "true"
                 ensureRunning: "true"
@@ -354,6 +359,10 @@ Resources:
                   - "/etc/nginx/nginx.conf"
                 sources: 
                   - "/var/www/html"
+
+    CreationPolicy:
+      ResourceSignal:
+        Timeout: 'PT5M'
 
 
 Outputs:
