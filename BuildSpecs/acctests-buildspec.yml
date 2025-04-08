@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - yum -y install aws-cli zip
+  build:
+    commands:
+      - export INSTANCE_ID=$(aws cloudformation describe-stacks --query 'Stacks[?contains(StackId,`TEST-Stack`)]|[0].Outputs[?contains(OutputKey,`TESTWebServerInstanceId`)]|[].OutputValue' --output text)
+      - export IP_ADDRESS=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query Reservations[0].Instances[0].PublicIpAddress --output text)
+      - "curl http://$IP_ADDRESS/ >> acc_test_output.txt" # test the homepage
+      - "curl http://$IP_ADDRESS/api/v1.0/get_challenge >> acc_test_output.txt" # test the challenge API
+      - "curl http://$IP_ADDRESS/api/v1.0/get_route_miles -H 'Content-Type: application/json;charset=UTF-8' --data-binary '{\"1\":{\"Route\":\"SAN,SFO\"},\"2\":{\"Route\":\"SFO,LAX\"}}' >> acc_test_output.txt" 
+      - "cat acc_test_output.txt"
+
+artifacts:
+  files:
+    - 'acc_test_output.txt'
+
