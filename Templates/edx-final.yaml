@@ -11,11 +11,11 @@ Parameters:
     MaxValue: '1024'
     ConstraintDescription: "Must be between 5 and 1024Gb."
   DBInstanceClass:
-    Default: db.t2.micro
+    Default: db.t3.micro
     Description: "The database instance type"
     Type: String
     AllowedValues:
-      - db.t2.micro
+      - db.t3.micro
     ConstraintDescription: "Must select a valid database instance type."
   DBInstanceMasterPassword:
     NoEcho: true
@@ -25,7 +25,7 @@ Parameters:
 Mappings:
   AWSRegion2AMI:
     us-west-2:
-      AMI: ami-d874e0a0
+      AMI: ami-087f352c165340ea1
 
 
 Resources:
