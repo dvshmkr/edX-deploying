@@ -30,4 +30,33 @@ GRANT USAGE ON `TEST-routes`.* TO 'web_user'@'%';
 GRANT SELECT ON `TEST-routes`.airport TO 'web_user'@'%';
 GRANT SELECT ON `TEST-routes`.route_miles TO 'web_user'@'%';
 
+-- -- Grant USAGE privilege on the TEST-routes database
+-- GRANT USAGE ON `FINAL-routes`.* TO 'web_user'@'%';
+-- -- Grant SELECT privileges on specific tables within FINAL-routes
+-- GRANT SELECT ON `FINAL-routes`.airport TO 'web_user'@'%';
+-- GRANT SELECT ON `FINAL-routes`.route_miles TO 'web_user'@'%';
+
 SELECT "WORKED!" as INFO
+
+
+-- -- Check if the TEST-routes database exists and grant privileges if it does
+-- SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'TEST-routes';
+-- IF FOUND_ROWS() > 0 THEN
+--     CREATE USER IF NOT EXISTS 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
+--     GRANT USAGE ON `TEST-routes`.* TO 'web_user'@'%';
+--     GRANT SELECT ON `TEST-routes`.airport TO 'web_user'@'%';
+--     GRANT SELECT ON `TEST-routes`.route_miles TO 'web_user'@'%';
+--     -- Optionally, you might want to revoke privileges on the other database if it exists
+--     -- REVOKE ALL PRIVILEGES ON `FINAL-routes`.* FROM 'web_user'@'%';
+-- END IF;
+
+-- -- Check if the FINAL-routes database exists and grant privileges if it does
+-- SELECT SCHEMA_NAME FROM information_schema.SCHEMATA WHERE SCHEMA_NAME = 'FINAL-routes';
+-- IF FOUND_ROWS() > 0 THEN
+--     CREATE USER IF NOT EXISTS 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
+--     GRANT USAGE ON `FINAL-routes`.* TO 'web_user'@'%';
+--     GRANT SELECT ON `FINAL-routes`.airport TO 'web_user'@'%';
+--     GRANT SELECT ON `FINAL-routes`.route_miles TO 'web_user'@'%';
+--     -- Optionally, you might want to revoke privileges on the other database if it exists
+--     -- REVOKE ALL PRIVILEGES ON `TEST-routes`.* FROM 'web_user'@'%';
+-- END IF;
