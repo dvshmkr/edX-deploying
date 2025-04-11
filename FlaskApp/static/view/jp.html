@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Click the shortest route!</a>
+      <a class="navbar-brand" href="#">最短ルートを選んでください</a>
       <p class="navbar-text"><a href="#!/en">en</a> | <a href="#!/jp">jp</a></p>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -16,11 +16,11 @@
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Score: {{score}}</p></li>
         <li><p class="navbar-text">
-            <span class="label" ng:class="diff == 'easy' ? 'label-primary' : 'label-default'">Easy</span>
-            <span class="label" ng:class="diff == 'medium' ? 'label-primary' : 'label-default'">Medium</span>
-            <span class="label" ng:class="diff == 'hard' ? 'label-primary' : 'label-default'">Hard</span>
+            <span class="label" ng:class="diff == 'easy' ? 'label-primary' : 'label-default'">下級</span>
+            <span class="label" ng:class="diff == 'medium' ? 'label-primary' : 'label-default'">中級</span>
+            <span class="label" ng:class="diff == 'hard' ? 'label-primary' : 'label-default'">上級</span>
           </p></li>
-          <li><p class="navbar-text"><button class="btn btn-default" type="button" ng-click="newgame()">New Game</button></p></li>
+          <li><p class="navbar-text"><button class="btn btn-default" type="button" ng-click="newgame()">ゲーム再開</button></p></li>
       </ul>
     </div>
   </div><!--/.container-fluid -->
@@ -29,25 +29,25 @@
 <div class="row">
   <div class="col-md-6">
     <div class="panel panel-default" ng:class="answer1css" ng-click="select(0);" style="cursor: pointer;">
-      <div class="panel-heading"><strong>Total Miles:</strong> {{answer1}}</div>
+      <div class="panel-heading"><strong>総距離:</strong> {{answer1}}</div>
       <div class="panel-body">
 
       <p class="text-center"><img width="300" src="{{ route[0].image }}"/></p>
       
       </div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="airport in route[0].airports">{{ airport.en }}</li>
+        <li class="list-group-item" ng-repeat="airport in route[0].airports">{{ airport.jp }} <small>({{ airport.en }})</small></li>
       </ul>
     </div>
   </div>
   <div class="col-md-6">
     <div class="panel panel-default" ng:class="answer2css" ng-click="select(1);" style="cursor: pointer;">
-      <div class="panel-heading"><strong>Total Miles:</strong> {{answer2}}</div>
+      <div class="panel-heading"><strong>総距離:</strong> {{answer2}}</div>
       <div class="panel-body">
        <p class="text-center"><img width="300" src="{{ route[1].image }}"/></p>
       </div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="airport in route[1].airports">{{ airport.en }}</li>
+        <li class="list-group-item" ng-repeat="airport in route[1].airports">{{ airport.jp }} <small>({{ airport.en }})</small></li>
       </ul>
     </div>
   </div>
@@ -55,6 +55,6 @@
 
 <div class="row">
   <div class="col-md-12">
-    <button class="btn btn-default" type="button" ng-disabled="!answered" ng-click="next()">Next</button>
+    <button class="btn btn-default" type="button" ng-disabled="!answered" ng-click="next()">次へ</button>
   </div>
 </div>

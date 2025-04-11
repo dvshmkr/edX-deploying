@@ -16,7 +16,7 @@ def list_airports():
     "Select all the photos from the database"
     conn = get_database_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("""SELECT ident, name, latitude, longitude, local_code FROM airport""")
+    cursor.execute("""SELECT ident, jp_name, name, latitude, longitude, local_code FROM airport""")
     result = cursor.fetchall()
     cursor.close()
     conn.close()

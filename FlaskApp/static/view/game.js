@@ -6,7 +6,10 @@ angular.module('myApp.gameView', ['ngRoute'])
   $routeProvider.when('/en', {
     templateUrl: '/static/view/en.html',
     controller: 'GameCtrl'
-  })
+  }).when('/jp', {
+    templateUrl: '/static/view/jp.html',
+    controller: 'GameCtrl'
+  });
 }])
 
 .controller('GameCtrl', ['$scope', '$http', function($scope, $http) {

@@ -26,7 +26,8 @@ def list_airports_mock():
         "HA50,HB50,HA60,HB60,HA51,HB51,HC51,HA61,HB61,HC61,HA52,"
         "HB52,HC52,HD52,HA62,HB62,HC62,HD62"
     )
-    return [{'ident': a, 'name': f'Fake - {a}', 'local_code': a} for a in airports.split(',')]
+    return [{'ident': a, 'name': f'Fake - %{a}', 'jp_name': '国際空港 - {a}', 'local_code': a}
+            for a in airports.split(',')]
 
 def list_routes_mock():
     "mock the routes response"
