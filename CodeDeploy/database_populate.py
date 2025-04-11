@@ -15,8 +15,6 @@ import sys
 import csv
 import os
 
-print("database_populate is running")
-
 def populate():
     user = os.environ['DATABASE_ROOT_USER']
     password = os.environ['DATABASE_ROOT_PASSWORD']
@@ -78,8 +76,46 @@ def populate():
     else:
         print("route_miles already populated")
 
+    # check if we already have a jp_name column
+    cursor.execute("""SELECT 1 FROM information_schema.COLUMNS WHERE 
+                      TABLE_SCHEMA = %s AND
+                      TABLE_NAME = 'airport' AND 
+                      COLUMN_NAME = 'jp_name';""", (database,))
+    result = cursor.fetchall()
+    if not result:
+        print("Updating airport DDL, adding ")
+        cursor.execute("ALTER TABLE airport ADD jp_name NVARCHAR(200);")
+    else:
+        print("airport table already has a jp_names column")
+    
+    # populate the japanese airport names
+    cursor.execute("SELECT 1 FROM airport WHERE jp_name IS NOT NULL")
+    result = cursor.fetchall()
+    if not result:
+        print("Populating jp_names")
+        jp_airports_csv =  os.path.join(os.path.dirname(__file__), 'jp-airports.csv')
+        with open(jp_airports_csv,'r', encoding='utf-8') as csvfile: 
+            reader = csv.DictReader(csvfile)
+            airports = [airport for airport in reader]
+            for airport in airports:
+                sql = """
+                UPDATE `airport` SET jp_name=%s
+                WHERE ident = %s;
+                """
+    
+                try:
+                    cursor.execute(sql, (airport["jp_name"],  airport["ident"]))
+                    info = conn.commit()
+                except:
+                    print("Unexpected error! ", sys.exc_info())
+                    sys.exit("Error!")
+    else:
+        print("jp_names already populated")
+
     conn.close()
     
 
 
 populate()
+
+
