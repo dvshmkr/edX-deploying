@@ -30,19 +30,11 @@ CREATE USER IF NOT EXISTS 'web_user'@'%' IDENTIFIED BY 'SED_REPLACE_PASS';
 -- GRANT SELECT ON `TEST-routes`.airport TO 'web_user'@'%';
 -- GRANT SELECT ON `TEST-routes`.route_miles TO 'web_user'@'%';
 
-<<<<<<< HEAD
 -- Grant USAGE privilege on the TEST-routes database
 GRANT USAGE ON `FINAL-routes`.* TO 'web_user'@'%';
 -- Grant SELECT privileges on specific tables within FINAL-routes
 GRANT SELECT ON `FINAL-routes`.airport TO 'web_user'@'%';
 GRANT SELECT ON `FINAL-routes`.route_miles TO 'web_user'@'%';
-=======
--- -- Grant USAGE privilege on the TEST-routes database
--- GRANT USAGE ON `FINAL-routes`.* TO 'web_user'@'%';
--- -- Grant SELECT privileges on specific tables within FINAL-routes
--- GRANT SELECT ON `FINAL-routes`.airport TO 'web_user'@'%';
--- GRANT SELECT ON `FINAL-routes`.route_miles TO 'web_user'@'%';
->>>>>>> dev
 
 SELECT "WORKED!" as INFO
 
