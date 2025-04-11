@@ -304,7 +304,7 @@ Resources:
       IamInstanceProfile: !Ref RootInstanceProfile
       ImageId: !FindInMap [ AWSRegion2AMI, !Ref "AWS::Region", AMI ]
       InstanceType: t3.micro
-      KeyName: edx-temp-public-key
+      KeyName: exercise3_key
       NetworkInterfaces:
         - DeviceIndex: '0'
           AssociatePublicIpAddress: 'true'
